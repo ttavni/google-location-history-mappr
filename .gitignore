@@ -1,0 +1,5 @@
+venv/*
+data/*
+corpus/*
+shorten/*
+data.csv
