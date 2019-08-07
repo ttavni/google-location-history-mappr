@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animated route</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0px;
+            z-index: 0;
+            padding: 0px
+        }
+
+        h1 {
+        	position: absolute;
+        	margin-top: 0;
+        	font-family: 'Inconsolata'; 
+        	color: white;
+        	z-index: 1;
+        	font-size: 25px;
+        	transform: translate(10px);
+        }
+
+
+        h2 {
+        	position: absolute;
+        	font-size: 25px;
+        	margin-top: 0;
+        	z-index: 1;
+        	font-family: 'Inconsolata'; 
+        	color: white;
+			   top:0;
+			   right:0;
+			   transform: translate(-10px);
+        }
+
+        h3{  
+        	position: absolute;
+        	z-index: 1;
+        	font-family: 'Inconsolata'; 
+        	color: white;
+   			text-align: center;
+   			bottom:0%;
+   			left:0%;
+   			font-size: 15px;
+   			transform: translate(10px);
+			}​
+
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false&key=AIzaSyB1Ev_xIK4pZLB9NjYz62zedM6yVPvtXcE"></script>
+
+    <script>
+        var map;
+
+        function initialize() {
+            var markLAT = coords[0].lat;
+            var markLNG = coords[0].lng;
+
+            map = new google.maps.Map(document.getElementById("map"), {
+              center: new google.maps.LatLng(51.5074, -0.1577),
+              zoom: 11,
+              disableDefaultUI: true,
+              mapTypeId: google.maps.MapTypeId.SATELLITE
+            });
+
+            autoRefresh();
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        var icon = new google.maps.MarkerImage("https://66.media.tumblr.com/e87b694f8c75e6566134317e89a08c38/tumblr_inline_mzd9o0tGFO1rs7nhs.png");
+
+        function moveMarker(map, marker, lat, lon) {
+            marker.setPosition(new google.maps.LatLng(lat, lon));
+            //map.panTo(new google.maps.LatLng(lat, lon));
+        }
+
+        function autoRefresh() {
+            var i, route, marker;
+
+            route = new google.maps.Polyline({
+                path: [],
+                geodesic : false,
+                strokeColor: '#ff99ff',
+                strokeOpacity: 0.25,
+                strokeWeight: 0.5,
+                map:map
+            });
+
+            marker=new google.maps.Marker({map:map,icon:icon});
+
+            for (i = 0; i < coords.length; i++) {
+                setTimeout(function (coords)
+                {
+                    route.getPath().push(new google.maps.LatLng(coords.lat, coords.lng));
+                    
+                    moveMarker(map, marker, coords.lat, coords.lng);
+
+                }, 1 * i, coords[i]);
+            }
+        }
+
+        // INSERT GOOGLE TAKEOUT DATA HERE
+        var coords = [{"lat":51.5922729,"lng":-0.1017269}];
+
+
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>
