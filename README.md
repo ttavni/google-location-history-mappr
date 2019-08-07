@@ -13,6 +13,6 @@ line(df) OR scatter(df) OR heatmap(df)
 
 ![scatter](https://i.imgur.com/oTzaTs5.jpg)
 
-NEW UPDATE:
+NEW UPDATE - use index.html to create animated HTML page
 
 ![html_gif](https://i.imgur.com/7qypWXN.gif)
