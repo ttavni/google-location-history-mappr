@@ -15,4 +15,4 @@ line(df) OR scatter(df) OR heatmap(df)
 
 NEW UPDATE:
 
-![html_gif](https://i.imgur.com/7qypWXN.gifv)
+![html_gif](https://i.imgur.com/7qypWXN.gif)
