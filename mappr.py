@@ -2,7 +2,6 @@ import gmplot
 import pandas as pd
 from pandas.io.json import json_normalize
 
-# shhhhh (AIzaSyB1Ev_xIK4pZLB9NjYz62zedM6yVPvtXcE)
 api_key = 'ENTER API KEY'
 
 def json_to_df(filepath):
